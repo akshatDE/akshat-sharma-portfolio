@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-/* next-themes sets class="dark" on <html>. */
-@custom-variant dark (&:where(.dark, .dark *));
-
 /*
  * Palette.
  *
@@ -11,35 +8,17 @@
  * small tone dots rather than filled shapes, so a diagram stays legible in
  * both themes and never turns into a rainbow flowchart.
  */
+/*
+ * Palette — dark only.
+ *
+ * Near-monochrome by design: one accent, used only on interactive and
+ * navigational elements. Colour in the architecture diagrams is carried by
+ * small tone dots rather than filled shapes, so a diagram stays legible and
+ * never turns into a rainbow flowchart.
+ */
 :root {
-  --bg: #ffffff;
-  --bg-subtle: #fbfbfb;
-  --bg-muted: #f4f4f5;
-  --bg-inset: #ffffff;
+  color-scheme: dark;
 
-  --fg: #101013;
-  --fg-muted: #5b5b66;
-  --fg-subtle: #8b8b96;
-
-  --border: #e7e7ea;
-  --border-strong: #d6d6db;
-
-  --accent: #2f4bd8;
-  --accent-fg: #ffffff;
-  --accent-subtle: #eef1fe;
-
-  --tone-source: #7c7c8a;
-  --tone-ingest: #2f6fd8;
-  --tone-process: #5b46d8;
-  --tone-storage: #0f7a68;
-  --tone-quality: #b06a06;
-  --tone-serve: #0a7490;
-  --tone-ai: #8a34b8;
-
-  --shadow-card: 0 1px 2px rgb(16 16 19 / 0.04);
-}
-
-.dark {
   --bg: #0a0a0c;
   --bg-subtle: #0f0f12;
   --bg-muted: #17171b;
@@ -67,8 +46,6 @@
   --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3);
 }
 
-/* Map the runtime variables onto Tailwind utilities. `inline` keeps the
-   var() reference in the generated CSS so .dark can override it. */
 @theme inline {
   --color-bg: var(--bg);
   --color-bg-subtle: var(--bg-subtle);
@@ -138,14 +115,10 @@
 /*
  * Brand marks on technology chips.
  *
- * Each icon carries its own pair of custom properties, generated with a
- * per-theme contrast adjustment (see scripts/generate-tech-icons.mjs), so a
- * black mark like Ollama's stays visible on the dark background.
+ * Each icon carries its brand colour, lightened at generation time where the
+ * original would disappear on the dark background — Ollama's mark is #000000.
+ * See scripts/generate-tech-icons.mjs.
  */
 .tech-icon {
-  color: var(--icon-light);
-}
-
-.dark .tech-icon {
-  color: var(--icon-dark);
+  color: var(--icon-color);
 }

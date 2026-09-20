@@ -3,11 +3,10 @@ import { profile, socialLinks } from "@/data/profile";
 import { SocialIcon } from "@/components/ui/social-icon";
 import { MobileNav } from "./mobile-nav";
 import { NavLinks } from "./nav-links";
-import { ThemeToggle } from "./theme-toggle";
 
 /**
- * Server component. Only the three interactive pieces — nav highlighting,
- * the mobile panel and the theme toggle — ship JavaScript.
+ * Server component. Only the two interactive pieces — nav highlighting and
+ * the mobile panel — ship JavaScript.
  */
 export function SiteHeader() {
   return (
@@ -47,7 +46,6 @@ export function SiteHeader() {
             ))}
           </ul>
 
-          <ThemeToggle />
           <MobileNav />
         </div>
       </div>

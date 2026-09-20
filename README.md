@@ -32,9 +32,10 @@ links) is populated from the real resume.
 
 The guiding rule is **content is data, UI is components, and the two never mix**.
 
-- **Server Components by default.** Four files carry `"use client"`: the theme
-  provider, the theme toggle, the mobile menu and the nav link highlighter.
-  Everything else — including syntax highlighting — runs at build time.
+- **Server Components by default.** Two files carry `"use client"`: the mobile
+  menu and the nav link highlighter. Everything else renders on the server.
+- **Dark only.** There is one palette and no theme toggle, so no provider, no
+  class-swapping and no flash-of-wrong-theme to guard against.
 - **No backend.** No API routes, no database, no auth. There is nothing this
   site needs to do at request time, so every route is prerendered to static HTML.
 
@@ -45,10 +46,9 @@ The guiding rule is **content is data, UI is components, and the two never mix**
 | `next`, `react` | App Router, Server Components |
 | `tailwindcss` v4 | Styling, configured in CSS (no `tailwind.config.js`) |
 | `lucide-react` | Icons, tree-shaken per import |
-| `next-themes` | Writes the theme class before first paint — prevents the dark-mode flash |
 | `geist` | Self-hosted variable font: no build-time network fetch, no layout shift |
 
-Six runtime dependencies total. Deliberately **not** used: no state library, no
+Five runtime dependencies total. Deliberately **not** used: no state library, no
 UI kit, no `clsx` + `tailwind-merge`, no MDX, no `@tailwindcss/typography`, no
 diagram library. Architecture diagrams are plain DOM (see below).
 
@@ -83,6 +83,9 @@ data/                     All structured content. No copy lives in components.
   open-source.ts          Contributions
   principles.ts           Engineering principles
   journey.ts              About-page progression
+
+scripts/
+  generate-tech-icons.mjs Regenerates the brand-mark module
 
 lib/
   types.ts                Shared domain types
@@ -165,18 +168,31 @@ To use a different filename, change it in that one place.
 | About-page story | `data/journey.ts` |
 | Hero portrait | replace `public/images/akshat-sharma.jpg` |
 | Colours, spacing, typography | `app/globals.css` |
+| Company logo on Experience | `logo` field in `data/experience.ts` |
 
 ---
 
 ## Theming
 
-Colours are CSS custom properties defined twice in `app/globals.css` — once on
-`:root` for light, once on `.dark` — and mapped onto Tailwind utilities with
-`@theme inline`, which keeps the `var()` reference in the output so the class
-swap works at runtime.
+The site is **dark only**. Colours are CSS custom properties defined once on
+`:root` in `app/globals.css`, alongside `color-scheme: dark` so native
+scrollbars and form controls match.
 
-To change the accent colour, edit `--accent` in both blocks. Nothing else needs
-touching.
+To change the accent colour, edit `--accent`. Nothing else needs touching.
+
+Technology brand marks are generated rather than hand-written:
+
+```bash
+npm run icons
+```
+
+`scripts/generate-tech-icons.mjs` pulls the marks listed in its `MAP` out of the
+`simple-icons` devDependency and writes `components/ui/tech-icons.ts`. Brand
+hexes are lightened where the original would be unreadable on the dark
+background — Ollama's mark is `#000000` — by finding the smallest shift that
+clears a luminance floor, so hues stay recognisable. Add a technology to the
+`MAP` and re-run to give it a logo; anything without one renders as a plain
+label.
 
 ---
 

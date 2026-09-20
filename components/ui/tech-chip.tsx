@@ -30,12 +30,7 @@ export function TechChip({
         <svg
           viewBox="0 0 24 24"
           className="tech-icon h-3 w-3 shrink-0"
-          style={
-            {
-              "--icon-light": icon.light,
-              "--icon-dark": icon.dark,
-            } as CSSProperties
-          }
+          style={{ "--icon-color": icon.color } as CSSProperties}
           aria-hidden="true"
         >
           <path d={icon.path} fill="currentColor" />

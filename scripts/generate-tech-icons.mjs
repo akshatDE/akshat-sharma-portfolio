@@ -64,19 +64,18 @@ function mix(hex, target, amount) {
 
 /**
  * Brand colours are chosen for white marketing sites, so some are unreadable on
- * one of our two themes — Ollama is #000000, Linux is a pale yellow.
+ * this site's dark background — Ollama's mark is #000000.
  *
- * Rather than a fixed nudge, this finds the *smallest* mix toward the theme's
- * text colour that clears a luminance threshold, so the hue stays recognisable:
- * Python blue stays blue instead of washing out to near-white.
+ * Rather than a fixed nudge, this finds the *smallest* mix toward white that
+ * clears a luminance floor, so the hue stays recognisable: Python blue stays
+ * blue instead of washing out to near-white.
  */
-function adjust(hex, target, wantLighter) {
+function adjust(hex) {
   let amount = 0;
   let result = hex;
   while (amount <= 1) {
-    result = mix(hex, target, amount);
-    const l = luminance(result);
-    if (wantLighter ? l >= DARK_FLOOR : l <= LIGHT_CEILING) break;
+    result = mix(hex, 255, amount);
+    if (luminance(result) >= DARK_FLOOR) break;
     amount += 0.02;
   }
   return result;
@@ -84,15 +83,9 @@ function adjust(hex, target, wantLighter) {
 
 /** Minimum luminance to read on the dark background (#0a0a0c). */
 const DARK_FLOOR = 0.3;
-/** Maximum luminance to read on the light background (#ffffff). */
-const LIGHT_CEILING = 0.55;
 
-function themeColors(hex) {
-  const l = luminance(hex);
-  return {
-    light: l > LIGHT_CEILING ? adjust(hex, 0, false) : hex,
-    dark: l < DARK_FLOOR ? adjust(hex, 255, true) : hex,
-  };
+function themeColor(hex) {
+  return luminance(hex) < DARK_FLOOR ? adjust(hex) : hex;
 }
 
 const entries = [];
@@ -104,8 +97,12 @@ for (const [name, key] of Object.entries(MAP)) {
     missing.push(`${name} (${key})`);
     continue;
   }
-  const { light, dark } = themeColors(icon.hex);
-  entries.push({ name, title: icon.title, path: icon.path, light, dark });
+  entries.push({
+    name,
+    title: icon.title,
+    path: icon.path,
+    color: themeColor(icon.hex),
+  });
 }
 
 if (missing.length) {
@@ -118,8 +115,7 @@ const body = entries
     (e) =>
       `  ${JSON.stringify(normalize(e.name))}: {\n` +
       `    title: ${JSON.stringify(e.title)},\n` +
-      `    light: "#${e.light}",\n` +
-      `    dark: "#${e.dark}",\n` +
+      `    color: "#${e.color}",\n` +
       `    path: ${JSON.stringify(e.path)},\n` +
       `  },`,
   )
@@ -133,14 +129,13 @@ const out = `// GENERATED FILE — do not edit by hand.
 // Run \`npm run icons\` to regenerate from the simple-icons package.
 //
 // Only the marks actually used on the site are included. Colours are the
-// official brand hex, adjusted per theme so low-contrast marks stay legible.
+// official brand hex, lightened where the original would be unreadable on the
+// dark background.
 
 export interface TechIcon {
   title: string;
-  /** Brand hex, darkened if it would wash out on a light background. */
-  light: string;
-  /** Brand hex, lightened if it would disappear on a dark background. */
-  dark: string;
+  /** Brand hex, lightened if it would disappear on the dark background. */
+  color: string;
   /** SVG path data, viewBox "0 0 24 24". */
   path: string;
 }
