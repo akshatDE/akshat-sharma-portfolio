@@ -1,4 +1,5 @@
 import { ArrowRight, GitPullRequest } from "lucide-react";
+import { ProjectLogo } from "@/components/projects/project-logo";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Section } from "@/components/ui/section";
 import { contributions } from "@/data/open-source";
@@ -12,19 +13,27 @@ export function OpenSourceHighlight() {
   return (
     <Section label="Open Source" className="border-b border-border">
       <div className="rounded-xl border border-border bg-bg-inset p-6 sm:p-8">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center gap-2 rounded-md border border-border bg-bg-subtle px-2.5 py-1 font-mono text-[0.6875rem] text-fg-muted">
-            <GitPullRequest className="h-3.5 w-3.5" aria-hidden="true" />
-            {contribution.status}
-          </span>
-          <span className="font-mono text-[0.6875rem] text-fg-subtle">
-            {contribution.project} · {contribution.area}
-          </span>
+        <div className="flex items-center gap-4">
+          {contribution.logo && (
+            <ProjectLogo
+              src={contribution.logo}
+              name={contribution.project}
+              size={44}
+            />
+          )}
+          <div className="flex min-w-0 flex-wrap items-center gap-x-3 gap-y-1.5">
+            <span className="inline-flex items-center gap-2 rounded-md border border-border bg-bg-subtle px-2.5 py-1 font-mono text-[0.6875rem] text-fg-muted">
+              <GitPullRequest className="h-3.5 w-3.5" aria-hidden="true" />
+              {contribution.status}
+            </span>
+            <span className="font-mono text-[0.6875rem] text-fg-subtle">
+              {contribution.project} · {contribution.area}
+            </span>
+          </div>
         </div>
 
         <h2 className="mt-5 max-w-2xl text-xl font-semibold leading-snug tracking-tight text-fg sm:text-2xl">
-          Diagnosed a sync/async streaming inconsistency in LangChain and landed
-          the fix upstream.
+          A merged fix in LangChain — and the reasoning that got there.
         </h2>
 
         <p className="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed text-fg-muted">

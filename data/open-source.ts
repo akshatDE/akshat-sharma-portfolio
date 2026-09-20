@@ -14,6 +14,9 @@ export interface ContributionLink {
 export interface Contribution {
   project: string;
   projectUrl: string;
+  /** Path under /public. The mark carries its own background, so it renders
+   *  as a logo tile rather than adapting to the theme. */
+  logo?: string;
   /** Short label for the area of the codebase touched. */
   area: string;
   role: string;
@@ -31,6 +34,7 @@ export const contributions: Contribution[] = [
   {
     project: "LangChain",
     projectUrl: LANGCHAIN,
+    logo: "/images/langchain.jpg",
     area: "Perplexity chat model integration",
     role: "Diagnosis and fix",
     status: "Merged",

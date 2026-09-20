@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GitPullRequest } from "lucide-react";
+import { ProjectLogo } from "@/components/projects/project-logo";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
 import { PageHeader } from "@/components/ui/page-header";
@@ -38,12 +39,23 @@ export default function OpenSourcePage() {
                 </span>
               </div>
 
-              <h2 className="mt-5 text-2xl font-semibold tracking-tight text-fg">
-                {contribution.project}
-              </h2>
-              <p className="mt-1.5 font-mono text-sm text-fg-muted">
-                {contribution.area}
-              </p>
+              <div className="mt-5 flex items-center gap-4">
+                {contribution.logo && (
+                  <ProjectLogo
+                    src={contribution.logo}
+                    name={contribution.project}
+                    size={52}
+                  />
+                )}
+                <div className="min-w-0">
+                  <h2 className="text-2xl font-semibold tracking-tight text-fg">
+                    {contribution.project}
+                  </h2>
+                  <p className="mt-1 font-mono text-sm text-fg-muted">
+                    {contribution.area}
+                  </p>
+                </div>
+              </div>
 
               <p className="mt-5 text-base leading-relaxed text-fg-muted">
                 {contribution.summary}
