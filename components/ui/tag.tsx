@@ -1,6 +1,7 @@
+import { TechChip } from "./tech-chip";
 import { cn } from "@/lib/utils";
 
-/** Monospace chip used for technologies and metadata. */
+/** Plain monospace chip for metadata that is not a technology. */
 export function Tag({
   children,
   className,
@@ -11,7 +12,7 @@ export function Tag({
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-md border border-border bg-bg-subtle px-2 py-0.5 font-mono text-[0.6875rem] tracking-tight text-fg-muted",
+        "inline-flex items-center rounded-md border border-border bg-bg-subtle px-2 py-1 font-mono text-[0.6875rem] leading-none tracking-tight text-fg-muted",
         className,
       )}
     >
@@ -20,6 +21,10 @@ export function Tag({
   );
 }
 
+/**
+ * Technology list. Each entry renders its brand mark when one exists, so a
+ * stack reads as recognisable logos rather than a block of monospace text.
+ */
 export function TagList({
   items,
   className,
@@ -37,7 +42,7 @@ export function TagList({
     <ul className={cn("flex flex-wrap gap-1.5", className)}>
       {shown.map((item) => (
         <li key={item}>
-          <Tag>{item}</Tag>
+          <TechChip name={item} />
         </li>
       ))}
       {overflow > 0 && (

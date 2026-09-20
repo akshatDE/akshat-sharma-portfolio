@@ -1,6 +1,6 @@
 import { Brain, Database, Terminal } from "lucide-react";
 import { Section } from "@/components/ui/section";
-import { Tag } from "@/components/ui/tag";
+import { TechChip } from "@/components/ui/tech-chip";
 import { skillGroups } from "@/data/skills";
 
 const icons = {
@@ -42,7 +42,7 @@ export function TechnicalFocus() {
                     <ul className="mt-2 flex flex-wrap gap-1.5">
                       {cluster.items.map((item) => (
                         <li key={item}>
-                          <Tag>{item}</Tag>
+                          <TechChip name={item} />
                         </li>
                       ))}
                     </ul>

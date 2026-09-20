@@ -134,3 +134,18 @@
     }
   }
 }
+
+/*
+ * Brand marks on technology chips.
+ *
+ * Each icon carries its own pair of custom properties, generated with a
+ * per-theme contrast adjustment (see scripts/generate-tech-icons.mjs), so a
+ * black mark like Ollama's stays visible on the dark background.
+ */
+.tech-icon {
+  color: var(--icon-light);
+}
+
+.dark .tech-icon {
+  color: var(--icon-dark);
+}
