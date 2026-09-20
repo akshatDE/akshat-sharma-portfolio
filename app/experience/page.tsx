@@ -4,6 +4,7 @@ import { Container } from "@/components/ui/container";
 import { PageHeader } from "@/components/ui/page-header";
 import { SectionLabel } from "@/components/ui/section-label";
 import { CompanyLogo } from "@/components/ui/company-logo";
+import { LogoTile } from "@/components/ui/logo-tile";
 import { TagList } from "@/components/ui/tag";
 import { TechChip } from "@/components/ui/tech-chip";
 import {
@@ -151,11 +152,19 @@ export default function ExperiencePage() {
           <ul className="mt-6 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2">
             {education.map((item) => (
               <li key={item.degree} className="bg-bg-inset p-5 sm:p-6">
-                <GraduationCap
-                  className="h-4 w-4 text-fg-subtle"
-                  aria-hidden="true"
-                />
-                <h3 className="mt-3 text-sm font-semibold tracking-tight text-fg">
+                {item.logo ? (
+                  <LogoTile
+                    src={item.logo}
+                    name={item.institution}
+                    size={52}
+                  />
+                ) : (
+                  <GraduationCap
+                    className="h-4 w-4 text-fg-subtle"
+                    aria-hidden="true"
+                  />
+                )}
+                <h3 className="mt-4 text-sm font-semibold tracking-tight text-fg">
                   {item.degree}
                 </h3>
                 <p className="mt-1 text-sm text-fg-muted">{item.institution}</p>

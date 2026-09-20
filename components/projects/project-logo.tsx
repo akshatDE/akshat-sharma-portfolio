@@ -1,17 +1,10 @@
-import Image from "next/image";
-import { cn } from "@/lib/utils";
+import { LogoTile } from "@/components/ui/logo-tile";
 
-/**
- * Logo tile for an external project.
- *
- * The source marks ship with their own background baked in, so this renders a
- * fixed tile with a hairline border rather than trying to make the artwork
- * adapt to the theme — the same treatment an app icon gets.
- */
+/** Logo tile for an external project. Thin alias over the shared tile. */
 export function ProjectLogo({
   src,
   name,
-  size = 44,
+  size,
   className,
 }: {
   src: string;
@@ -19,18 +12,5 @@ export function ProjectLogo({
   size?: number;
   className?: string;
 }) {
-  return (
-    <Image
-      src={src}
-      alt={`${name} logo`}
-      width={size * 2}
-      height={size * 2}
-      sizes={`${size}px`}
-      style={{ width: size, height: size }}
-      className={cn(
-        "shrink-0 rounded-xl border border-border object-cover",
-        className,
-      )}
-    />
-  );
+  return <LogoTile src={src} name={name} size={size} className={className} />;
 }

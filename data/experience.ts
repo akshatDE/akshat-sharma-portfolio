@@ -15,6 +15,8 @@ export interface Role {
 
 export interface Education {
   institution: string;
+  /** Path under /public. Square mark with its own background. */
+  logo?: string;
   degree: string;
   focus?: string;
   period?: string;
@@ -72,6 +74,7 @@ export const experience: Role[] = [
 export const education: Education[] = [
   {
     institution: "University of Massachusetts Boston",
+    logo: "/images/umass-boston.png",
     degree: "M.S. Business Analytics",
     focus: "AI and Data Analytics",
     period: "September 2024 — May 2026",
@@ -79,6 +82,7 @@ export const education: Education[] = [
   },
   {
     institution: "Chitkara University",
+    logo: "/images/chitkara.png",
     degree: "B.Tech Computer Science Engineering",
     period: "August 2019 — August 2023",
     detail: "GPA 3.74",
