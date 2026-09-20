@@ -21,7 +21,7 @@ export default function OpenSourcePage() {
     <>
       <PageHeader
         label="Open Source"
-        title="Contributing to code I did not write"
+        title="The Craft of Programming Beyond My Own Code"
         description="Working in a codebase used by a very large number of people is a different constraint from working on your own projects. The bar is not 'does this work' — it is correct, minimal, tested, and explainable to whoever maintains it next."
       />
 
