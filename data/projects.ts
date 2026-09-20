@@ -18,6 +18,7 @@ export const projects: Project[] = [
     slug: "agenticgpt",
     name: "AgenticGPT",
     subtitle: "Pure Python Agentic AI Architecture",
+    status: "wip",
     summary:
       "An agentic AI system built from first principles — custom agent loop, tool schemas and MCP integration with no agent framework underneath.",
     period: "2025",
@@ -29,7 +30,7 @@ export const projects: Project[] = [
       "MCP replaced a hardcoded tool registry, removing per-tool integration code.",
       "Runs against local models via Ollama or hosted models via Groq.",
     ],
-    links: { github: gh("AgenticGPT") },
+    links: { github: gh("AgenticAILearning") },
     diagram: {
       caption: "Request path for a single user turn.",
       stages: [
@@ -176,7 +177,8 @@ export const projects: Project[] = [
       "Feedback is grounded in the source note, not the model's own recall.",
       "Tracks recall performance per topic to target weak areas.",
     ],
-    links: { github: gh("AbhyasMitra") },
+    // No public repository yet — still in progress.
+    links: {},
     diagram: {
       caption: "One study cycle. Nothing in this path leaves the device.",
       stages: [
@@ -310,7 +312,7 @@ export const projects: Project[] = [
       "Two blocking Airflow data-quality gates that fail the run via pytest.",
       "Docker Compose cut contributor setup from ~2 hours to under 10 minutes.",
     ],
-    links: { github: gh("SoftCart") },
+    links: { github: gh("softcart-ecom-data_platform") },
     diagram: {
       caption: "Source systems through to natural-language analytics.",
       stages: [
@@ -494,7 +496,7 @@ export const projects: Project[] = [
       "Serverless throughout: 6-hour EventBridge schedule, Step Functions, SNS alerts.",
       "QuickSight dashboard over four Athena SPICE datasets.",
     ],
-    links: { github: gh("youtube-trending-pipeline") },
+    links: { github: gh("YT-Trending-Data-Pipeline") },
     diagram: {
       caption: "Medallion layers on S3, orchestrated by Step Functions.",
       stages: [

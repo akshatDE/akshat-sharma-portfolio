@@ -91,13 +91,22 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
 
           <TagList items={project.stack} className="mt-6" />
 
-          {project.links.github && (
+          {project.links.github ? (
             <div className="mt-7">
               <ButtonLink href={project.links.github} external>
                 <SocialIcon name="github" />
                 View on GitHub
               </ButtonLink>
             </div>
+          ) : (
+            project.status === "wip" && (
+              // Derived from the data rather than a separate field: a project
+              // marked in progress with no repository has an obvious reason
+              // for the missing button, and saying so beats a bare gap.
+              <p className="mt-7 font-mono text-xs text-fg-subtle">
+                Repository not public yet — this one is still in progress.
+              </p>
+            )
           )}
         </Container>
       </header>
