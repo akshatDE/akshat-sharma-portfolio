@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/lib/types";
 import { TagList } from "@/components/ui/tag";
 import { SocialIcon } from "@/components/ui/social-icon";
+import { ProjectStatusBadge } from "./project-status-badge";
 
 /**
  * A project card is a summary of an engineering story, not a badge shelf:
@@ -25,9 +26,12 @@ export function ProjectCard({ project }: { project: Project }) {
             {project.subtitle}
           </p>
         </div>
-        <span className="shrink-0 rounded-md border border-border bg-bg-subtle px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-wider text-fg-subtle">
-          {project.domain}
-        </span>
+        <div className="flex shrink-0 flex-col items-end gap-1.5">
+          <span className="rounded-md border border-border bg-bg-subtle px-2 py-0.5 font-mono text-[0.625rem] uppercase tracking-wider text-fg-subtle">
+            {project.domain}
+          </span>
+          {project.status && <ProjectStatusBadge status={project.status} />}
+        </div>
       </div>
 
       <p className="mt-4 text-sm leading-relaxed text-fg-muted">

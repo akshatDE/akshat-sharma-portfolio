@@ -13,6 +13,7 @@ import {
   TradeOffList,
 } from "@/components/projects/decision-list";
 import { GuardrailList } from "@/components/projects/guardrail-list";
+import { ProjectStatusBadge } from "@/components/projects/project-status-badge";
 import { ButtonLink } from "@/components/ui/button-link";
 import { Container } from "@/components/ui/container";
 import { SocialIcon } from "@/components/ui/social-icon";
@@ -73,6 +74,9 @@ export default async function ProjectCaseStudyPage({ params }: PageProps) {
             </span>
             <span aria-hidden="true">·</span>
             <span>{project.period}</span>
+            {project.status && (
+              <ProjectStatusBadge status={project.status} className="ml-1" />
+            )}
           </div>
 
           <h1 className="mt-4 text-3xl font-semibold tracking-tight text-fg sm:text-4xl">

@@ -62,7 +62,7 @@ app/                      Routes. Each page is thin — it composes components.
   page.tsx                Home
   about/ experience/ open-source/ resume/
   projects/               Project index
-    [slug]/               Case study template (one file, five pages)
+    [slug]/               Case study template — one file, one page per project
   sitemap.ts robots.ts    Generated from the same data the pages use
   icon.svg                Favicon
   globals.css             Design tokens, light/dark palettes, base styles

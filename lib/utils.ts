@@ -20,3 +20,16 @@ export function formatDate(iso: string): string {
     timeZone: "UTC",
   });
 }
+
+const NUMBER_WORDS = [
+  "zero", "one", "two", "three", "four", "five",
+  "six", "seven", "eight", "nine", "ten", "eleven", "twelve",
+] as const;
+
+/**
+ * Spells small numbers so body copy can state a count without hardcoding it.
+ * Falls back to digits above twelve, where words stop reading naturally.
+ */
+export function spellNumber(n: number): string {
+  return NUMBER_WORDS[n] ?? String(n);
+}

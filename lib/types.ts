@@ -75,10 +75,19 @@ export type ProjectDomain =
   | "Data Platform"
   | "Streaming";
 
+/** Lifecycle marker. Omit for finished projects. */
+export type ProjectStatus = "wip";
+
+export const projectStatusLabels: Record<ProjectStatus, string> = {
+  wip: "Work in progress",
+};
+
 export interface Project {
   slug: string;
   name: string;
   subtitle: string;
+  /** Renders a badge on the card and case study when set. */
+  status?: ProjectStatus;
   /** One or two sentences used on cards and in metadata. */
   summary: string;
   period: string;
