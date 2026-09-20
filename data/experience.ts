@@ -1,7 +1,5 @@
 export interface Role {
   company: string;
-  /** Path under /public. Transparent artwork, rendered on a light plate. */
-  logo?: string;
   title: string;
   start: string;
   end: string;
@@ -44,7 +42,6 @@ export interface OutsideRole {
 export const experience: Role[] = [
   {
     company: "Neel Data Pro IT Solutions Pvt Ltd",
-    logo: "/images/neel-data-pro.webp",
     title: "Data Engineer · Data Engineering Intern",
     start: "July 2021",
     end: "July 2024",

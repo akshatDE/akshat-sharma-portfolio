@@ -3,7 +3,6 @@ import { ArrowUpRight, Award, GraduationCap } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHeader } from "@/components/ui/page-header";
 import { SectionLabel } from "@/components/ui/section-label";
-import { CompanyLogo } from "@/components/ui/company-logo";
 import { LogoTile } from "@/components/ui/logo-tile";
 import { TagList } from "@/components/ui/tag";
 import { TechChip } from "@/components/ui/tech-chip";
@@ -39,12 +38,6 @@ export default function ExperiencePage() {
               key={`${role.company}-${role.start}`}
               className="rounded-xl border border-border bg-bg-inset p-6 sm:p-8"
             >
-              {role.logo && (
-                <div className="mb-6">
-                  <CompanyLogo src={role.logo} company={role.company} />
-                </div>
-              )}
-
               <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
                 <div>
                   <h2 className="text-lg font-semibold tracking-tight text-fg">
@@ -157,6 +150,7 @@ export default function ExperiencePage() {
                     src={item.logo}
                     name={item.institution}
                     size={52}
+                    muted
                   />
                 ) : (
                   <GraduationCap
