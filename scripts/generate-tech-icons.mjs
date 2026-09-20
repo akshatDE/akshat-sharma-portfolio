@@ -38,6 +38,9 @@ const MAP = {
   "Looker Studio": "siLooker",
   Streamlit: "siStreamlit",
   "Testing (pytest)": "siPytest",
+  Perplexity: "siPerplexity",
+  // Alias: the organisation is written in full on the Experience page.
+  "Perplexity AI": "siPerplexity",
 };
 
 /** WCAG relative luminance, 0 (black) to 1 (white). */

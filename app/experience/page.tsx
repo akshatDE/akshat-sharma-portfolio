@@ -1,10 +1,16 @@
 import type { Metadata } from "next";
-import { Award, GraduationCap } from "lucide-react";
+import { ArrowUpRight, Award, GraduationCap } from "lucide-react";
 import { Container } from "@/components/ui/container";
 import { PageHeader } from "@/components/ui/page-header";
 import { SectionLabel } from "@/components/ui/section-label";
 import { TagList } from "@/components/ui/tag";
-import { certifications, education, experience } from "@/data/experience";
+import { TechChip } from "@/components/ui/tech-chip";
+import {
+  certifications,
+  education,
+  experience,
+  outsideExperience,
+} from "@/data/experience";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = buildMetadata({
@@ -24,7 +30,8 @@ export default function ExperiencePage() {
       />
 
       <Container className="py-14 sm:py-16">
-        <ol className="space-y-8">
+        <SectionLabel>Professional Experience</SectionLabel>
+        <ol className="mt-6 space-y-8">
           {experience.map((role) => (
             <li
               key={`${role.company}-${role.start}`}
@@ -70,6 +77,67 @@ export default function ExperiencePage() {
             </li>
           ))}
         </ol>
+
+        <section className="mt-16">
+          <SectionLabel>Outside Experience</SectionLabel>
+          <ul className="mt-6 space-y-4">
+            {outsideExperience.map((role) => (
+              <li
+                key={`${role.organization}-${role.title}`}
+                className="rounded-xl border border-border bg-bg-inset p-6 sm:p-8"
+              >
+                <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+                  <div>
+                    <h2 className="text-lg font-semibold tracking-tight text-fg">
+                      {role.title}
+                    </h2>
+                    <div className="mt-2 flex flex-wrap items-center gap-2">
+                      <TechChip name={role.organization} />
+                      <span className="text-sm text-fg-muted">
+                        {role.affiliation}
+                      </span>
+                    </div>
+                  </div>
+                  {role.period && (
+                    <p className="shrink-0 font-mono text-xs text-fg-subtle">
+                      {role.period}
+                    </p>
+                  )}
+                </div>
+
+                <p className="mt-5 text-[0.9375rem] leading-relaxed text-fg-muted">
+                  {role.summary}
+                </p>
+
+                <ul className="mt-5 space-y-3">
+                  {role.highlights.map((highlight) => (
+                    <li key={highlight} className="flex gap-3">
+                      <span
+                        className="mt-[0.5625rem] h-1 w-1 shrink-0 rounded-full bg-border-strong"
+                        aria-hidden="true"
+                      />
+                      <span className="text-[0.9375rem] leading-relaxed text-fg-muted">
+                        {highlight}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+
+                {role.url && (
+                  <a
+                    href={role.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-fg transition-colors hover:text-fg-muted"
+                  >
+                    {role.organization}
+                    <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </section>
 
         <section className="mt-16">
           <SectionLabel>Education</SectionLabel>

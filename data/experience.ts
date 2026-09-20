@@ -25,6 +25,18 @@ export interface Certification {
   issuer: string;
 }
 
+/** Roles outside salaried work — campus programmes, community, advocacy. */
+export interface OutsideRole {
+  organization: string;
+  title: string;
+  affiliation: string;
+  /** Optional: set once you know the term dates. */
+  period?: string;
+  summary: string;
+  highlights: string[];
+  url?: string;
+}
+
 export const experience: Role[] = [
   {
     company: "Neel Data Pro IT Solutions Pvt Ltd",
@@ -67,6 +79,23 @@ export const education: Education[] = [
     degree: "B.Tech Computer Science Engineering",
     period: "August 2019 — August 2023",
     detail: "GPA 3.74",
+  },
+];
+
+export const outsideExperience: OutsideRole[] = [
+  {
+    organization: "Perplexity AI",
+    title: "Campus Strategist",
+    affiliation: "University of Massachusetts Boston",
+    // period: "2025 — Present",  // set this once you have the term dates
+    summary:
+      "Selected to represent Perplexity at UMass Boston, running campus outreach for its student programme.",
+    highlights: [
+      "Student-facing point of contact for Perplexity on campus.",
+      "Ran outreach across the university introducing students to real-time, source-backed AI research.",
+      "Distributed complimentary Perplexity Pro access through the student programme.",
+    ],
+    url: "https://www.perplexity.ai",
   },
 ];
 
