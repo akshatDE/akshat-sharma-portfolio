@@ -91,9 +91,9 @@ export const outsideExperience: OutsideRole[] = [
     organization: "Perplexity AI",
     title: "Campus Strategist",
     affiliation: "University of Massachusetts Boston",
-    // period: "2025 — Present",  // set this once you have the term dates
+    period: "Spring 2025",
     summary:
-      "Selected to represent Perplexity at UMass Boston, running campus outreach for its student programme.",
+      "Selected to represent Perplexity at UMass Boston, where I ran campus outreach for its student programme.",
     highlights: [
       "Student-facing point of contact for Perplexity on campus.",
       "Ran outreach across the university introducing students to real-time, source-backed AI research.",
