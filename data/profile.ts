@@ -1,8 +1,5 @@
 /**
  * Single source of truth for identity, contact links and site-wide metadata.
- *
- * `siteUrl` is the one value still to set: point it at your production domain
- * before deploying, since it drives canonical URLs, sitemap.xml and robots.txt.
  */
 
 export interface SocialLink {
@@ -28,8 +25,11 @@ export const profile = {
   description:
     "Data Engineer and AI Engineer building production data platforms, agentic AI systems, MCP integrations, and open-source software.",
 
-  /** No trailing slash. Update to your real domain before deploying. */
-  siteUrl: "https://akshatsharma.dev",
+  /**
+   * Production origin, no trailing slash — paths are appended directly.
+   * Drives canonical URLs, Open Graph URLs, sitemap.xml and robots.txt.
+   */
+  siteUrl: "https://akshat-sharma-portfolio-psi.vercel.app",
 
   /** Path inside /public. Replace the file, keep the path. */
   resumePath: "/resume.pdf",

@@ -19,12 +19,15 @@ npm run dev      # http://localhost:3000
 
 ---
 
-## Before you deploy
+## Live
 
-One value is still a placeholder — `siteUrl` in [`data/profile.ts`](data/profile.ts).
-Set it to your production domain; it drives canonical URLs, `sitemap.xml` and
-`robots.txt`. Everything else (GitHub, LinkedIn, email, resume, LangChain PR
-links) is populated from the real resume.
+**https://akshat-sharma-portfolio-psi.vercel.app**
+
+Deployed from `main` on Vercel — no environment variables, no backend.
+
+If the domain ever changes, update `siteUrl` in [`data/profile.ts`](data/profile.ts):
+it is the single source for canonical URLs, Open Graph URLs, `sitemap.xml` and
+`robots.txt`.
 
 ---
 
